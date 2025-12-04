@@ -1,132 +1,124 @@
-# Frontend Testing Summary - Assignment 1 Part B
+# Frontend Testing Summary – Assignment 1 (Part B)
 
 ## Overview
-This document summarizes the frontend testing implementation for the RealWorld React/Redux application as part of Assignment 1, Part B requirements.
-
-## Test Coverage Implemented
-
-### Task 4: Component Unit Tests (40 points) COMPLETED
-
-#### 4.1 Component Test Files Created
-
-1. **ArticleList.test.js** - 4 test cases
-   - Render loading state when articles is null/undefined
-   - Render empty message when articles array is empty
-   - Render multiple articles
-   - Render pagination when articles exist
-
-2. **ArticlePreview.test.js** - 8 test cases
-   - Render article data correctly (title, description, author)
-   - Render author image
-   - Render tag list
-   - Display favorites count
-   - Show correct button style when article is not favorited
-   - Show correct button style when article is favorited
-   - Dispatch favorite action when clicking favorite button
-   - Have clickable author link
-
-3. **Login.test.js** - 6 test cases
-   - Render login form
-   - Render link to registration page
-   - Update email field on input
-   - Update password field on input
-   - Dispatch login action on form submission
-   - Display error messages when errors exist
-4. **Header.test.js** - 7 test cases
-   - Render navigation links for guest users
-   - Render navigation links for logged-in users
-   - Not show Sign in/Sign up when user is logged in
-   - Not show New Post/Settings when user is logged out
-   - Render app name as brand
-   - Render user profile link for logged-in users
-   - Render user avatar for logged-in users
-
-5. **Editor.test.js** - 8 test cases
-   - Render form fields
-   - Render publish button
-   - Update title field
-   - Update description field
-   - Update body field
-   - Add tag on Enter key press
-   - Display existing tags
-   - Dispatch submit action on form submission
-
-**Total Component Tests: 33 test cases** (Exceeds requirement of 20)
+This document provides a detailed summary of the frontend testing implemented for the RealWorld React/Redux application as required for **Assignment 1 – Part B**.
 
 ---
 
-### Task 5: Redux Integration Tests (30 points) COMPLETED
-
-#### 5.1 Reducer Test Files Created
-
-1. **auth.test.js** - 11 test cases
-   - Return initial state
-   - Handle LOGIN success
-   - Handle LOGIN error
-   - Handle REGISTER success
-   - Handle REGISTER error
-   - Handle LOGIN_PAGE_UNLOADED
-   - Handle REGISTER_PAGE_UNLOADED
-   - Handle ASYNC_START for LOGIN
-   - Handle ASYNC_START for REGISTER
-   - Handle UPDATE_FIELD_AUTH (single field)
-   - Update multiple fields with UPDATE_FIELD_AUTH
-
-2. **articleList.test.js** - 8 test cases
-   - Return initial state
-   - Handle ARTICLE_FAVORITED
-   - Handle ARTICLE_UNFAVORITED
-   - Handle SET_PAGE (pagination)
-   - Handle APPLY_TAG_FILTER
-   - Handle HOME_PAGE_LOADED
-   - Handle HOME_PAGE_UNLOADED
-   - Handle CHANGE_TAB
-
-3. **editor.test.js** - 13 test cases
-   - Return initial state
-   - Handle EDITOR_PAGE_LOADED with article (edit mode)
-   - Handle EDITOR_PAGE_LOADED without article (new mode)
-   - Handle EDITOR_PAGE_UNLOADED
-   - Handle UPDATE_FIELD_EDITOR for title
-   - Handle UPDATE_FIELD_EDITOR for description
-   - Handle UPDATE_FIELD_EDITOR for body
-   - Handle ADD_TAG
-   - Handle REMOVE_TAG
-   - Handle ARTICLE_SUBMITTED success
-   - Handle ARTICLE_SUBMITTED error
-   - Handle ASYNC_START for ARTICLE_SUBMITTED
-   - Manage tag list through multiple operations
-
-#### 5.2 Middleware Tests
-
-**middleware.test.js** - 10 test cases
-   - **promiseMiddleware (5 tests):**
-     - Pass through non-promise actions
-     - Dispatch ASYNC_START for promise actions
-     - Unwrap promise and dispatch result
-     - Handle promise errors
-     - Cancel outdated requests when view changes
-   
-   - **localStorageMiddleware (5 tests):**
-     - Save JWT token on LOGIN
-     - Save JWT token on REGISTER
-     - Not save token on LOGIN error
-     - Clear token on LOGOUT
-     - Pass through other actions unchanged
-
-**Total Redux Tests: 42 test cases** (Significantly exceeds requirements)
+## Implemented Test Coverage
 
 ---
 
-## Testing Technologies Used
+## Task 4: Component Unit Tests (40 points) — COMPLETED
 
-- **@testing-library/react** (v12.1.5) - Component testing
-- **@testing-library/jest-dom** (v5.16.5) - Custom Jest matchers
-- **@testing-library/user-event** (v14.4.3) - User interaction simulation
-- **redux-mock-store** (v1.5.4) - Redux store mocking
-- **Jest** - Test framework (built into react-scripts)
+### 4.1 Component Test Files
 
-## Test Execution
+#### 1. ArticleList.test.js — *4 test cases*
+- Renders loading state when articles are null/undefined  
+- Renders empty message when no articles exist  
+- Renders multiple articles  
+- Displays pagination when articles are available  
+
+#### 2. ArticlePreview.test.js — *8 test cases*
+- Renders article details (title, description, author)  
+- Displays author image  
+- Shows tag list  
+- Displays favorites count  
+- Shows correct favorite button style (favorited/not favorited)  
+- Dispatches favorite action on click  
+- Provides clickable author link  
+
+#### 3. Login.test.js — *6 test cases*
+- Renders login form  
+- Renders link to registration page  
+- Updates email and password fields  
+- Dispatches login action on submission  
+- Displays error messages when present  
+
+#### 4. Header.test.js — *7 test cases*
+- Shows navigation links for guest users  
+- Shows correct navigation links for authenticated users  
+- Hides Sign in/Sign up for logged-in users  
+- Hides New Post/Settings for logged-out users  
+- Displays app brand name  
+- Renders user profile link and avatar  
+
+#### 5. Editor.test.js — *8 test cases*
+- Renders editor form fields  
+- Renders publish button  
+- Updates title, description, and body fields  
+- Adds tags on Enter key  
+- Displays existing tags  
+- Dispatches submit action  
+
+### ✅ Total Component Tests: **33** (Requirement: 20) — **EXCEEDED**
+
+---
+
+## Task 5: Redux Integration Tests (30 points) — COMPLETED
+
+### 5.1 Reducer Tests
+
+#### 1. auth.test.js — *11 test cases*
+- Tests initial state  
+- Handles LOGIN success & error  
+- Handles REGISTER success & error  
+- Handles LOGIN_PAGE_UNLOADED / REGISTER_PAGE_UNLOADED  
+- Handles ASYNC_START for login/register  
+- Handles UPDATE_FIELD_AUTH (single + multi-field updates)  
+
+#### 2. articleList.test.js — *8 test cases*
+- Tests initial state  
+- Handles ARTICLE_FAVORITED / ARTICLE_UNFAVORITED  
+- Handles pagination via SET_PAGE  
+- Handles APPLY_TAG_FILTER  
+- Handles HOME_PAGE_LOADED / UNLOADED  
+- Handles CHANGE_TAB  
+
+#### 3. editor.test.js — *13 test cases*
+- Tests initial state  
+- Handles EDITOR_PAGE_LOADED (edit mode & new mode)  
+- Handles page unload  
+- Handles UPDATE_FIELD_EDITOR  
+- Tag operations: ADD_TAG / REMOVE_TAG  
+- Handles ARTICLE_SUBMITTED (success/error)  
+- Handles ASYNC_START  
+- Manages tag list with multiple operations  
+
+---
+
+### 5.2 Middleware Tests
+
+**middleware.test.js — 10 test cases**
+
+#### promiseMiddleware (5 tests)
+- Passes through non-promise actions  
+- Dispatches ASYNC_START  
+- Dispatches unwrapped promise results  
+- Handles promise errors  
+- Cancels outdated requests on view change  
+
+#### localStorageMiddleware (5 tests)
+- Saves token on LOGIN and REGISTER  
+- Avoids saving token on errors  
+- Clears token on LOGOUT  
+- Pass-through for unrelated actions  
+
+### Total Redux Tests: **42** — EXCEEDED
+
+---
+
+## Testing Tools & Libraries Used
+
+- **@testing-library/react** — component rendering  
+- **@testing-library/jest-dom** — extended matchers  
+- **@testing-library/user-event** — user event simulation  
+- **redux-mock-store** — mocks Redux store  
+- **Jest** — test runner  
+
+---
+
+## Running the Tests
 
 ```bash
 cd react-redux-realworld-example-app
